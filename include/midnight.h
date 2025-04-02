@@ -13,6 +13,8 @@
 #include "linalgebra.h"
 #include "utils_read.h"
 
-GLFWwindow* midnight_init(const int width, const int height);
+typedef GLFWwindow MidnightWindow;
+
+MidnightWindow* midnight_init(const int width, const int height);
 
 #endif

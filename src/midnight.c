@@ -3,7 +3,7 @@
 #include "midnight.h"
 #include <GLFW/glfw3.h>
 
-GLFWwindow* midnight_init(const int width, const int height) {
+MidnightWindow* midnight_init(const int width, const int height) {
 
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
