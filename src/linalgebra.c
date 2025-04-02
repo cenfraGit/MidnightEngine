@@ -1,6 +1,7 @@
 // linalgebra.c
 
 #include "linalgebra.h"
+#include "types.h"
 
 float* mat4(float n) {
   float* matrix = (float*)malloc(16 * sizeof(float));
@@ -94,3 +95,36 @@ void rotate_z(float* matrix, float angle) {
   matrix_rotation[5] = cosf(angle);
   mat4_multiply(matrix, matrix_rotation);
 }
+
+void set_position(void* ptr, int type, float x, float y, float z) {
+  if (type == 0) {
+    Camera* camera = (Camera*)ptr;
+    camera->transform[3]  = x;
+    camera->transform[7]  = y;
+    camera->transform[11] = z;
+  }
+  else if (type == 1) {
+    Object* object = (Object*)ptr;
+    object->transform[3]  = x;
+    object->transform[7]  = y;
+    object->transform[11] = z;
+  }
+}
+
+void init_transform(void* ptr, int type) {
+  float* identity = mat4(1.0f);
+  if (type == 0) {
+    Camera* camera = (Camera*)ptr;
+    for (int i = 0; i < 16; i++) {
+      camera->transform[i] = identity[i];
+    }
+  }
+  else if (type == 1) {
+    Object* object = (Object*)ptr;
+    for (int i = 0; i < 16; i++) {
+      object->transform[i] = identity[i];
+    }
+  }
+  free(identity);
+}
+
