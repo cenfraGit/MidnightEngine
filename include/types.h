@@ -22,7 +22,7 @@ typedef struct {
   float aspect_ratio;
   float near;
   float far;
-  Object* object;
+  float transform[16];
 } Camera;
 
 #endif
