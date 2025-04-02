@@ -1,4 +1,4 @@
-// main.c basic
+// main.c cube
 
 #include "linalgebra.h"
 #include "midnight.h"
@@ -6,12 +6,13 @@
 #include <GLFW/glfw3.h>
 
 Object* cube;
-Camera* camera;
+Camera *camera;
+float time_delta;
 
 void update() {
-  rotate_x(cube->transform, (float)radians(glfwGetTime()));
-  rotate_y(cube->transform, (float)radians(glfwGetTime()));
-  rotate_z(cube->transform, (float)radians(glfwGetTime()));
+  rotate_x(cube->transform, 0.05f);
+  rotate_y(cube->transform, 0.05f);
+  rotate_z(cube->transform, 0.05f);
   draw_object(cube, camera);
 }
 
@@ -19,7 +20,6 @@ int main(void) {
   
   MidnightWindow* window = midnight_init(400, 400);
 
-  float time_delta;
   camera = create_camera(90.0f, 1, 0.1f, 100.0f);
   translate(camera->transform, 0.0f, 0.0f, -5.0f);
   
@@ -33,6 +33,5 @@ int main(void) {
   free(mesh);
   free(material);
   free(window);
-  
   return 0;
 }
