@@ -23,6 +23,10 @@ int midnight_init(void) {
     fprintf(stderr, "Failure initializing GLAD.\n");
     return -1;
   }
+
+  while (!glfwWindowShouldClose(window)) {
+
+  }
   
   return 0;
   
