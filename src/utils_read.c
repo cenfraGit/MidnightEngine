@@ -49,7 +49,7 @@ Mesh* read_obj(const char* filename) {
     return NULL;
   }
 
-  unsigned int amount = 5120;
+  unsigned int amount = 20000;
   Vertex* vertices = (Vertex*)malloc(amount * sizeof(Vertex));
   Face* faces = (Face*)malloc(amount * sizeof(Face));
   unsigned int num_vertices = 0;

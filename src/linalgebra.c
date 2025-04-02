@@ -127,4 +127,3 @@ void init_transform(void* ptr, int type) {
   }
   free(identity);
 }
-

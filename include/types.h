@@ -13,7 +13,13 @@ typedef struct {
 } Mesh;
 
 typedef struct {
+  unsigned int program;
+} Material;
+
+typedef struct {
   Mesh* mesh;
+  Material* material;
+  unsigned int VAO;
   float transform[16];
 } Object;
 

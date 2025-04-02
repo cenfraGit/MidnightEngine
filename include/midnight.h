@@ -16,6 +16,7 @@
 
 typedef GLFWwindow MidnightWindow;
 
-MidnightWindow* midnight_init(const int width, const int height);
+MidnightWindow *midnight_init(const int width, const int height);
+void midnight_loop(MidnightWindow* window, void (*update)(void), float* time_delta);
 
 #endif
