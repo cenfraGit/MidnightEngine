@@ -1,6 +1,8 @@
+// main.c basic
 
-#include "engine.h"
+#include "midnight.h"
 
 int main(void) {
-  midnight_init();
+  GLFWwindow* window = midnight_init(400, 400);
+  return 0;
 }
