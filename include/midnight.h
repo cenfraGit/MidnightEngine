@@ -9,6 +9,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "types.h"
+#include "linalgebra.h"
+#include "utils_read.h"
+
 GLFWwindow* midnight_init(const int width, const int height);
 
 #endif
