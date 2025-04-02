@@ -1,7 +1,7 @@
-// engine.h
+// midnight.h
 
-#ifndef _ENGINE_H
-#define _ENGINE_H
+#ifndef _MIDNIGHT_H
+#define _MIDNIGHT_H
 
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
@@ -9,6 +9,6 @@
 #include <stdio.h>
 #include <string.h>
 
-int midnight_init(void);
+GLFWwindow* midnight_init(const int width, const int height);
 
 #endif

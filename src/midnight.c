@@ -1,33 +1,28 @@
-// engine.c
+// midnight.c
 
-#include "engine.h"
+#include "midnight.h"
 #include <GLFW/glfw3.h>
 
-int midnight_init(void) {
+GLFWwindow* midnight_init(const int width, const int height) {
 
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  GLFWwindow* window = glfwCreateWindow(400, 400, "Midnight", NULL, NULL);
+  GLFWwindow* window = glfwCreateWindow(width, height, "Midnight", NULL, NULL);
   if (!window) {
     fprintf(stderr, "Failure initializing GLFW.\n");
     glfwTerminate();
-    return -1;
+    return NULL;
   }
 
   glfwMakeContextCurrent(window);
   
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
     fprintf(stderr, "Failure initializing GLAD.\n");
-    return -1;
-  }
-
-  while (!glfwWindowShouldClose(window)) {
-
+    return NULL;
   }
   
-  return 0;
-  
+  return window;
 }
