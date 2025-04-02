@@ -8,7 +8,7 @@
 // create shader
 // ------------------------------------------------------------
 
-static unsigned int* create_shader(const char* filename, int type) {
+unsigned int* create_shader(const char* filename, int type) {
   
   const char* source = read_shader_source(filename);
   if (!source) {
