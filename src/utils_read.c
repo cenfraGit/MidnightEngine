@@ -75,7 +75,6 @@ Mesh* read_obj(const char* filename) {
   Mesh* mesh = (Mesh*)malloc(sizeof(Mesh));
   if (!mesh) {
     fprintf(stderr, "Failure allocating memory for Mesh.\n");
-    fclose(file);
     return NULL;
   }
 
