@@ -12,6 +12,7 @@
 #include "types.h"
 #include "linalgebra.h"
 #include "utils_read.h"
+#include "utils_gl.h"
 
 typedef GLFWwindow MidnightWindow;
 
