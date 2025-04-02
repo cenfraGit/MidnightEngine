@@ -105,4 +105,6 @@ unsigned int* create_program(const char* filename_vertex, const char* filename_f
 // uniforms
 // ------------------------------------------------------------
 
-/* void set_uniform(const unsigned int program, const unsigned int type, ); */
+void set_uniform_matrix(const unsigned int program, const char *uniform_variable, float *matrix) {
+  glUniformMatrix4fv(glGetUniformLocation(program, uniform_variable), 1, GL_TRUE, matrix);
+}
