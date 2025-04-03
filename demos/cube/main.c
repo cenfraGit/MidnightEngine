@@ -2,19 +2,22 @@
 
 #include "midnight.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 MNObject* cube;
 MNCamera* camera;
 MNWindow* window;
 
-float time_delta;
 int width = 1200;
 int height = 800;
 
+float velocity = 0.0;
+float gravity = 3;
+float time_delta = 0.0f;
+
 void update() {
-  rotate_x(cube->transform, 0.05f);
-  rotate_y(cube->transform, 0.05f);
-  rotate_z(cube->transform, 0.05f);
+  velocity = velocity + (gravity * time_delta);
+  translate(cube->transform, 0.0f, -(velocity * time_delta), 0.0f);
   mn_draw_object(cube, camera);
   mn_camera_move(camera, window, &time_delta);
 }
