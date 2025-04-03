@@ -8,6 +8,8 @@ find_package(OpenGL REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GLFW3 REQUIRED glfw3)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 include_directories(include include/glad/include ${GLFW3_INCLUDE_DIRS})
 
 set(GLAD_SRC include/glad/src/glad.c)
