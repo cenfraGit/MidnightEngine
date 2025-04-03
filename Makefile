@@ -9,7 +9,7 @@ OBJECTS = $(SOURCES:.c=.o)
 LNAME = libmidnight.a
 
 $(LNAME): $(OBJECTS)
-	@echo "OBJECTS: $(OBJECTS)" # Add this line
+	@echo "OBJECTS: $(OBJECTS)"
 	ar rcs $@ $^
 
 %.o: %.c

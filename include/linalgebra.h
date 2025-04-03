@@ -3,8 +3,6 @@
 #ifndef _LINALGEBRA_H
 #define _LINALGEBRA_H
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 #ifndef M_PI
@@ -24,8 +22,5 @@ void translate(float* matrix, float tx, float ty, float tz);
 void rotate_x(float* matrix, float angle);
 void rotate_y(float* matrix, float angle);
 void rotate_z(float* matrix, float angle);
-
-void set_position(void* ptr, int type, float x, float y, float z);
-void init_transform(void* ptr, int type);
 
 #endif

@@ -3,6 +3,12 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
+#include <GLFW/glfw3.h>
+
+#define prerror(value) do{ fprintf(stderr, value); return NULL; } while (0);
+
+typedef GLFWwindow MNWindow;
+
 typedef struct { float x, y, z; } Vertex;
 typedef struct { unsigned int v1, v2, v3; } Face;
 typedef struct {
@@ -10,18 +16,19 @@ typedef struct {
   unsigned int num_vertices;
   unsigned int* indices;
   unsigned int num_indices;
-} Mesh;
+  unsigned int VAO;
+} MNMesh;
 
 typedef struct {
   unsigned int program;
-} Material;
+} MNMaterial;
 
 typedef struct {
-  Mesh* mesh;
-  Material* material;
-  unsigned int VAO;
+  MNMesh* mesh;
+  MNMaterial* material;
+  /* unsigned int VAO; */
   float transform[16];
-} Object;
+} MNObject;
 
 typedef struct {
   float fov;
@@ -29,6 +36,6 @@ typedef struct {
   float near;
   float far;
   float transform[16];
-} Camera;
+} MNCamera;
 
 #endif
