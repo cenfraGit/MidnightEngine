@@ -36,6 +36,7 @@ typedef struct {
   float near;
   float far;
   float transform[16];
+  float projection[16];
 } MNCamera;
 
 #endif

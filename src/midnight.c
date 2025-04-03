@@ -29,6 +29,15 @@ void callback_framebuffer_size(GLFWwindow* window, int width, int height) {
   MNCamera* camera = (MNCamera*)glfwGetWindowUserPointer(window);
   if (height > 0) { camera->aspect_ratio = (float)width/height; }
   else { camera->aspect_ratio = 1.0f; }
+  // recalculate projection here
+  float* projection = perspective(camera->fov,
+				  camera->aspect_ratio,
+				  camera->near,
+				  camera->far);
+  for (int i = 0; i < 16; i++) {
+    camera->projection[i] = projection[i];
+  }
+  free(projection);
 }
 
 // ------------------------------------------------------------
@@ -53,8 +62,10 @@ MNWindow* mn_create_window(const char* title, const int width, const int height)
 
   /* ------------- gl states ------------- */
 
+  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   glEnable(GL_DEPTH_TEST);
-  /* glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); */
+  glEnable(GL_CULL_FACE);
+  glCullFace(GL_FRONT);
   
   return window;
 }
@@ -75,7 +86,7 @@ void mn_loop(MNWindow* window, void (*update)(void), float* time_delta) {
   } else {
     time_delta_new = time_delta;
   }
-  float last_frame;
+  float last_frame = 0.0f;
   
   while (!glfwWindowShouldClose(window)) {
 
@@ -385,6 +396,15 @@ MNCamera* mn_create_camera(float fov_deg, float aspect_ratio, float near, float 
   camera->aspect_ratio = aspect_ratio;
   camera->near = near;
   camera->far = far;
+  float* projection = perspective(camera->fov,
+				  camera->aspect_ratio,
+				  camera->near,
+				  camera->far);
+  for (int i = 0; i < 16; i++) {
+    camera->projection[i] = projection[i];
+  }
+  free (projection);
+    
   mn_init_transform(camera, 0);
 
   // (needed to update aspect ratio inside window size callback)
@@ -403,16 +423,11 @@ void mn_draw_object(MNObject* object, MNCamera* camera) {
 
   float* model = object->transform;
   float* view = camera->transform;
-  float* projection = perspective(camera->fov,
-				  camera->aspect_ratio,
-				  camera->near,
-				  camera->far);
+  float* projection = camera->projection;
 
   glUniformMatrix4fv(glGetUniformLocation(object->material->program, "model"), 1, GL_TRUE, model);
   glUniformMatrix4fv(glGetUniformLocation(object->material->program, "view"), 1, GL_TRUE, view);
   glUniformMatrix4fv(glGetUniformLocation(object->material->program, "projection"), 1, GL_TRUE, projection);
-  
-  free(projection);
 
   glBindVertexArray(object->mesh->VAO);
   glDrawElements(GL_TRIANGLES, object->mesh->num_indices, GL_UNSIGNED_INT, 0);
