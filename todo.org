@@ -1,0 +1,8 @@
+
+* TODO cross product
+* TODO vector normalization
+* TODO lookat
+* TODO obj parse normals
+* TODO obj parse texture coords
+* TODO lighting
+* TODO textures
